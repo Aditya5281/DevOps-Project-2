@@ -31,3 +31,18 @@ resource "azurerm_role_assignment" "role" {
   scope                            = azurerm_container_registry.acr.id
   skip_service_principal_aad_check = true
 }
+
+resource "random_password" "pg_password" {
+  length  = 16
+  special = true
+}
+
+resource "azurerm_postgresql_flexible_server" "psql" {
+  name = var.psql_name
+  resource_group_name = var.rg_name
+  location = "East US"
+  version  = "17"
+  sku_name = "GP_Standard_D2s_v3"
+  storage_mb = 32768
+  backup_retention_days = 7
+}

@@ -21,3 +21,7 @@ variable "acr_name" {
 variable "aks_name" {
   type = string
 }
+
+variable "psql_name" {
+  type = string
+}
