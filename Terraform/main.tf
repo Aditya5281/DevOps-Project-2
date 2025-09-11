@@ -46,4 +46,6 @@ resource "azurerm_postgresql_flexible_server" "psql" {
   sku_name = "GP_Standard_D2s_v3"
   storage_mb = 32768
   backup_retention_days = 7
+  administrator_login = var.postgres_admin
+  administrator_password = random_password.pg_password.result
 }

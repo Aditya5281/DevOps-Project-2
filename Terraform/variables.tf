@@ -25,3 +25,7 @@ variable "aks_name" {
 variable "psql_name" {
   type = string
 }
+
+variable "postgres_admin" { 
+    type = string
+}
