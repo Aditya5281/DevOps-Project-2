@@ -15,6 +15,7 @@ resource "azurerm_kubernetes_cluster" "aks" {
   name = var.aks_name
   resource_group_name = var.rg_name
   location = "East US"
+  dns_prefix = "${var.aks_name}-dns"
   default_node_pool {
     name       = "default"
     node_count = 1
