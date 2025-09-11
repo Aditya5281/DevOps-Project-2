@@ -6,11 +6,10 @@ terraform {
   }
 
   backend "azurerm" {
-    resource_group_name  = "RGP-USE-IACT1-DEV"
-    storage_account_name = "imagebuilder01"
+    resource_group_name  = "__storageAccountResourceGroup__"
+    storage_account_name = "__storageAccount__"
     container_name       = "terraform-test"
     key                  = "terraformaks.tfstate"
-    sas_token            = ""
   }
 }
 
