@@ -42,7 +42,7 @@ resource "azurerm_postgresql_flexible_server" "psql" {
   name = var.psql_name
   resource_group_name = var.rg_name
   location = "East US"
-  version  = "17"
+  version  = "12"
   sku_name = "GP_Standard_D2s_v3"
   storage_mb = 32768
   backup_retention_days = 7
