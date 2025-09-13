@@ -1,0 +1,43 @@
+version: "3.8"
+services:
+  db: 
+    image: postgres:14
+    environment:
+      POSTGRES_DB: mydb
+      POSTGRES_USER: pguser
+      POSTGRES_PASSWORD: Pass#1234567
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    image: 86580/my-backend:1.0                       # Tag the Image like this
+    environment:
+      POSTGRES_DB: mydb
+      POSTGRES_USER: pguser
+      POSTGRES_PASSWORD: example
+      POSTGRES_HOST: db               #db Service
+      DJANGO_DEBUG: "True"
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+
+  frontend:
+    build: 
+      context: ./frontend
+      dockerfile: Dockerfile
+    image: 86580/my-frontend:1.0                    # Tag the Image like this
+    environment: 
+      REACT_APP_API_URL: https://localhost:8000
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+
+volumes:
+  db_data:
